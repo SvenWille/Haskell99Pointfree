@@ -1,4 +1,4 @@
-module Haskell99Pointfree.P1 (p1,p1',p'') where
+module Haskell99Pointfree.P1 (p1,p1',p1'') where
 
 import Data.Maybe
 import Data.Either
