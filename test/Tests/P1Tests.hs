@@ -1,23 +1,14 @@
-module Main (main) where
+{-# LANGUAGE ScopedTypeVariables #-}
+module Tests.P1Tests
+    ( p1Tests
+    ) where
 
 import Test.Hspec
 import Test.QuickCheck
 import Haskell99Pointfree
 import Data.Maybe
 import Control.Exception
-import Test.QuickCheck.Gen
-import Tests.P1Tests
-import Tests.P2Tests
 
-main :: IO()
-
-main =  hspec $ do
-  p1Tests
-  p2Tests
-
-
-
-{-
 p1Tests :: SpecWith ()
 p1Tests = describe "Problem 1: return the last element of a list" $ do
   describe "testing version p1" $ do
@@ -25,7 +16,7 @@ p1Tests = describe "Problem 1: return the last element of a list" $ do
       p1 [1,2,3,4] `shouldBe` Just 4
     it "p1 with []" $
       p1 ([] :: [Int]) `shouldBe` Nothing
-  describe "testing porperties of p1" $ do
+  describe "testing porperties of p1" $
     it "p1 with nonempty list" $ property
       (\(x::[Int]) -> not  (null x) ==> (p1 x == (Just $ last x)))
 
@@ -34,7 +25,7 @@ p1Tests = describe "Problem 1: return the last element of a list" $ do
       p1' [1,2,3,4] `shouldBe` 4
     it "p1\' with []" $
       evaluate (p1' []) `shouldThrow` anyException
-  describe "testing properties of p1\'" $ do
+  describe "testing properties of p1\'" $
     it "p1\' with nonempty list" $ property
       (\(x::[Bool]) -> not  (null x) ==> (p1' x == last x))
 
@@ -43,7 +34,6 @@ p1Tests = describe "Problem 1: return the last element of a list" $ do
       p1'' [1,2,3,4] `shouldBe` 4
     it "p1\'\' with []" $
       evaluate (p1'' []) `shouldThrow` anyException
-  describe "testing properties of p1\'\'" $ do
+  describe "testing properties of p1\'\'" $
     it "p1\'' with nonempty list" $ property
       (\(x::String) -> not  (null x) ==> (p1'' x == last x))
--}

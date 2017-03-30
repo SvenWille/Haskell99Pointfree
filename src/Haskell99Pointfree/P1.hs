@@ -1,7 +1,6 @@
-module Haskell99Pointfree.P1 (p1,p1',p1'') where
+module Haskell99Pointfree.P1 (p1,p1',p1'',p1''',p1'''') where
 
-import Data.Maybe
-import Data.Either
+
 import Data.Bool.HT
 import Control.Monad
 import Control.Applicative
@@ -23,11 +22,10 @@ p1'' :: [a] -> a
 p1'' = liftA3 if' (not . null) (head . reverse) (error "no last element for empty list")
 
 --using either for exception handling (in this case an empty list)
-{-
+
 p1''' :: [a] -> Either String a
-p1''' =
+p1''' = undefined
 
 -- using a default value
-p'''' :: [a] -> a -> a
-p'''' =
--}
+p1'''' :: [a] -> a -> a
+p1'''' = undefined
