@@ -8,12 +8,14 @@ import Control.Exception
 import Test.QuickCheck.Gen
 import Tests.P1Tests
 import Tests.P2Tests
+import Tests.P4Tests
 
 main :: IO()
 
 main =  hspec $ do
   p1Tests
   p2Tests
+  p4Tests
 
 
 

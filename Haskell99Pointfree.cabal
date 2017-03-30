@@ -17,9 +17,11 @@ library
   hs-source-dirs:      src
   exposed-modules:     Haskell99Pointfree ,
                        Haskell99Pointfree.P1,
-                       Haskell99Pointfree.P2
+                       Haskell99Pointfree.P2,
+                       Haskell99Pointfree.P4
   build-depends:       base >= 4.7 && < 5,
-                       utility-ht
+                       utility-ht,
+                       extra
   default-language:    Haskell2010
 
 
@@ -32,6 +34,7 @@ test-suite Haskell99Pointfree-test
                        QuickCheck                      ,
                        hspec
   other-modules:       Tests.P1Tests                   ,
-                       Tests.P2Tests
+                       Tests.P2Tests                   ,
+                       Tests.P4Tests
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
