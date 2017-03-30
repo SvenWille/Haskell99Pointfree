@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/johan/Haskell99Pointfree/.stack-work/install/x86_64-linux/lts-8.6/8.0.2/bin"
-libdir     = "/home/johan/Haskell99Pointfree/.stack-work/install/x86_64-linux/lts-8.6/8.0.2/lib/x86_64-linux-ghc-8.0.2/Haskell99Pointfree-0.1.0.0"
+libdir     = "/home/johan/Haskell99Pointfree/.stack-work/install/x86_64-linux/lts-8.6/8.0.2/lib/x86_64-linux-ghc-8.0.2/Haskell99Pointfree-0.1.0.0-CH0qb3zjB5EJLvf8j5jKUL"
 dynlibdir  = "/home/johan/Haskell99Pointfree/.stack-work/install/x86_64-linux/lts-8.6/8.0.2/lib/x86_64-linux-ghc-8.0.2"
 datadir    = "/home/johan/Haskell99Pointfree/.stack-work/install/x86_64-linux/lts-8.6/8.0.2/share/x86_64-linux-ghc-8.0.2/Haskell99Pointfree-0.1.0.0"
 libexecdir = "/home/johan/Haskell99Pointfree/.stack-work/install/x86_64-linux/lts-8.6/8.0.2/libexec"

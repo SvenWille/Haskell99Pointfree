@@ -14,6 +14,27 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 1)
 
+/* package utility-ht-0.0.13 */
+#define VERSION_utility_ht "0.0.13"
+#define MIN_VERSION_utility_ht(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  0 || \
+  (major1) == 0 && (major2) == 0 && (minor) <= 13)
+
+/* package QuickCheck-2.9.2 */
+#define VERSION_QuickCheck "2.9.2"
+#define MIN_VERSION_QuickCheck(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  9 || \
+  (major1) == 2 && (major2) == 9 && (minor) <= 2)
+
+/* package hspec-2.4.3 */
+#define VERSION_hspec "2.4.3"
+#define MIN_VERSION_hspec(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  4 || \
+  (major1) == 2 && (major2) == 4 && (minor) <= 3)
+
 /* tool cpphs-1.20.1 */
 #define TOOL_VERSION_cpphs "1.20.1"
 #define MIN_TOOL_VERSION_cpphs(major1,major2,minor) (\
@@ -84,7 +105,7 @@
   (major1) == 2 && (major2) <  25 || \
   (major1) == 2 && (major2) == 25 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Haskell99Pointfree-0.1.0.0"
+#define CURRENT_COMPONENT_ID "Haskell99Pointfree-0.1.0.0-CH0qb3zjB5EJLvf8j5jKUL"
 
-#define CURRENT_PACKAGE_KEY "Haskell99Pointfree-0.1.0.0"
+#define CURRENT_PACKAGE_KEY "Haskell99Pointfree-0.1.0.0-CH0qb3zjB5EJLvf8j5jKUL"
 

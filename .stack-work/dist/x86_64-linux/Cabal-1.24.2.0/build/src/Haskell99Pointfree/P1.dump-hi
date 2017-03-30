@@ -1,0 +1,80 @@
+
+==================== FINAL INTERFACE ====================
+2017-03-30 13:23:06.114901 UTC
+
+interface Haskell99Pointfree-0.1.0.0-CH0qb3zjB5EJLvf8j5jKUL:Haskell99Pointfree.P1 8002
+  interface hash: c3ed4a8fa0eea4fce2e3fca6fa6b6be8
+  ABI hash: 0f2812bae60a9158c18268b8a1ae59de
+  export-list hash: baadb3ff801d685371d855b12f56968b
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: a97885f08e6ed1ed63c39f46fc571989
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Haskell99Pointfree.P1.p1
+  Haskell99Pointfree.P1.p1'
+module dependencies:
+package dependencies: base-4.9.1.0* ghc-prim-0.5.0.0
+                      integer-gmp-1.0.0.1
+                      utility-ht-0.0.13@utility-ht-0.0.13-HmMdLiB8sea9VwMp6zcUD0
+orphans: base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+family instance modules: base-4.9.1.0:Control.Applicative
+                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Const
+                         base-4.9.1.0:Data.Monoid base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:GHC.Generics base-4.9.1.0:GHC.IO.Exception
+                         base-4.9.1.0:GHC.TypeLits
+import  -/  base-4.9.1.0:Control.Applicative 32430a90492e727f4bd80db71c28600c
+import  -/  base-4.9.1.0:Control.Monad a6784c5dab0d75c63dabec5a37843f98
+import  -/  base-4.9.1.0:Data.Either 20b09ef8d0a5b74fdec011c40c1587f5
+import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
+import  -/  base-4.9.1.0:Data.Maybe d876c4ffe4b3c43755a781e8ad860d88
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
+import  -/  base-4.9.1.0:GHC.Err 3bba35a16538d33d424682ce66876cdd
+import  -/  base-4.9.1.0:GHC.List ab8c4e523e6c479c549d3bcd5fc4a439
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
+import  -/  utility-ht-0.0.13@utility-ht-0.0.13-HmMdLiB8sea9VwMp6zcUD0:Data.Bool.HT b6b76419ede69b695ce8a8141cf3ee68
+import  -/  utility-ht-0.0.13@utility-ht-0.0.13-HmMdLiB8sea9VwMp6zcUD0:Data.Bool.HT.Private c9f256c435d909419425c840d9325ece
+432b79565d4b0540a00f398af01969aa
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Haskell99Pointfree.P1.$trModule2
+                   Haskell99Pointfree.P1.$trModule1) -}
+51e435d89d6aa874ec5b324d8e3c281b
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Haskell99Pointfree.P1"#) -}
+da863e9eac6cbb679531ddfe0767897e
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "Haskell99Pointfree-0.1.0.0-CH0qb3zjB5EJLvf8j5jKUL"#) -}
+bd09ac86cc8a086feeb46797712f080f
+  p1 :: [a] -> GHC.Base.Maybe a
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (y :: [a]) ->
+                 case y of wild {
+                   [] -> GHC.Base.Nothing @ a
+                   : ds1 ds2
+                   -> GHC.Base.Just
+                        @ a
+                        (case GHC.List.reverse1 @ a wild (GHC.Types.[] @ a) of wild1 {
+                           [] -> GHC.List.badHead @ a : x ds4 -> x }) }) -}
+dd779a292134a9be981cf4a5d42f9327
+  p1' :: [a] -> a
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ a (x :: [a]) ->
+                 case GHC.List.reverse1 @ a x (GHC.Types.[] @ a) of wild {
+                   [] -> GHC.List.badHead @ a : x1 ds1 -> x1 }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
