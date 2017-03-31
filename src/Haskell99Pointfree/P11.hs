@@ -14,7 +14,7 @@ p11, p11', p11'', p11''' :: Eq a => [a] ->  [MorS a]
 
 p11 = map (liftA3 ifThenElse ( (==1) . genericLength) (Single . head) (liftA2 Multiple genericLength head)) . group
 
-p11' = map (join ( ( . join ( ( . head ) . Multiple .genericLength) ) .  ifThenElse  . (==1) . genericLength)) . group
+p11' = undefined -- map (join ( ( . join ( ( . head ) . Multiple .genericLength) ) .  ifThenElse  . (==1) . genericLength)) . group
 
 p11'' =  undefined -- flip (flip ifThenElse)
 
