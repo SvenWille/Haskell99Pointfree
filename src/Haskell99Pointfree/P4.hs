@@ -23,7 +23,7 @@ p4'' :: [a] -> Integer
 p4'' = sum . fmap (return 1)
 
 p4''' :: [a] -> Integer
-p4''' = ifM  (not . null) ( p4''' . tail)  (const (-1)) >>= ( const . (+1) )
+p4''' = ifM  (not . null) ( p4''' . tail)  (const (-1)) >>= (const .  (+1) )
 
 --variant of p4'''
 p4'''' :: [a] -> Integer

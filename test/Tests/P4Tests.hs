@@ -32,7 +32,7 @@ p4Tests = describe "Problem 4: return the length of a list" $ do
     it "p4' with arbitrary lists" $ property
       (\(x::[Int]) ->  p4' x == genericLength x)
 
-  describe "testing version p4'" $ do
+  describe "testing version p4''" $ do
     it "p4'' with [1,2,3,4,5,6]" $
       p4'' [1,2,3,4,5,6] `shouldBe` 6
     it "p4'' with []" $
