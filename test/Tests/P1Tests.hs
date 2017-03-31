@@ -47,3 +47,12 @@ p1Tests = describe "Problem 1: return the last element of a list" $ do
   describe "testing properties of p1'''" $
     it "p1''' with arbitrary lists" $ property
       (\(x::String) -> (null x && isLeft (p1''' [])  ) ||   (p1''' x == Right  (last x)))
+
+  describe "testing version p1''''" $ do
+    it "p1'''' with [1,2,3,4] 5" $
+      p1'''' [1,2,3,4] 5 `shouldBe` 4
+    it "p1'''' with [] 5" $
+      p1'''' [] 5 `shouldBe` 5
+  describe "testing properties of p1''''" $
+    it "p1'''' with arbitrary lists" $ property
+      (\(x::[Int]) (y::Int) -> if null x then p1'''' x y == y else p1'''' x y == last x ) 

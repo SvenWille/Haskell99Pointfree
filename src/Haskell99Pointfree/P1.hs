@@ -27,4 +27,4 @@ p1''' = flip flip (Left "no last element for empty lists")  (liftA2 ifThenElse (
 
 -- using a default value
 p1'''' :: [a] -> a -> a
-p1'''' = undefined
+p1'''' = liftA2 ifThenElse (not . null) last 
