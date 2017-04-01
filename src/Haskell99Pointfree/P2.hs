@@ -32,7 +32,8 @@ p2'''' = join ((. (Just . head . tail . reverse)) . flip (. id) Nothing  . flip 
 p2_5 :: [a] -> Either String a
 p2_5 = undefined
 
---safe version (using default value)
-
+--safe version (using a default value)
+p2_6 :: [a] -> a -> a
+p2_6 = undefined
 
 --version with custom error message (using error)

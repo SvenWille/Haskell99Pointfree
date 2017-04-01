@@ -1,9 +1,10 @@
-module Haskell99Pointfree.P1 (p1,p1',p1'',p1''',p1'''') where
+module Haskell99Pointfree.P1 (p1,p1',p1'',p1''',p1'''',p1_5) where
 
 
 import Data.Bool.HT
 import Control.Monad
 import Control.Applicative
+import Control.Monad.Extra
 
 
 -- safe version using maybe
@@ -27,4 +28,8 @@ p1''' = flip flip (Left "no last element for empty lists")  (liftA2 ifThenElse (
 
 -- using a default value
 p1'''' :: [a] -> a -> a
-p1'''' = liftA2 ifThenElse (not . null) last 
+p1'''' = liftA2 ifThenElse (not . null) last
+
+--using ifM from Control.Monad.Extra
+p1_5 :: [a] -> Maybe a
+p1_5 = ifM null (const Nothing) (Just . last)

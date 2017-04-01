@@ -5,7 +5,7 @@ module Tests.P1Tests
 
 import Test.Hspec
 import Test.QuickCheck
-import Haskell99Pointfree
+import Haskell99Pointfree.P1
 import Data.Maybe
 import Control.Exception
 import Data.Either
@@ -55,4 +55,13 @@ p1Tests = describe "Problem 1: return the last element of a list" $ do
       p1'''' [] 5 `shouldBe` 5
   describe "testing properties of p1''''" $
     it "p1'''' with arbitrary lists" $ property
-      (\(x::[Int]) (y::Int) -> if null x then p1'''' x y == y else p1'''' x y == last x ) 
+      (\(x::[Int]) (y::Int) -> if null x then p1'''' x y == y else p1'''' x y == last x )
+
+  describe "testing version p1_5" $ do
+    it "p1_5 with [1,2,3,4]" $
+      p1_5 [1,2,3,4] `shouldBe` Just 4
+    it "p1_5 with []" $
+      p1_5 ([] :: [Int]) `shouldBe` Nothing
+  describe "testing porperties of p1_5" $
+    it "p1_5 with nonempty list" $ property
+      (\(x::[Int]) -> (null x && isNothing (p1_5 x) ) || (p1_5 x == Just (last x)))
