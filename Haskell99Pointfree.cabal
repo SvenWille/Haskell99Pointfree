@@ -21,10 +21,15 @@ library
                        Haskell99Pointfree.P4,
                        Haskell99Pointfree.P5,
                        Haskell99Pointfree.P11,
-                       Haskell99Pointfree.P12
+                       Haskell99Pointfree.P12,
+                       Haskell99Pointfree.P15
   build-depends:       base >= 4.7 && < 5,
                        utility-ht,
-                       extra
+                       extra,
+                       lens,
+                       syb,
+                       derive
+
   default-language:    Haskell2010
 
 
