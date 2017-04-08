@@ -1,9 +1,10 @@
-module Haskell99Pointfree.P2 (p2,p2',p2'',p2''',p2'''',p2_5) where
+module Haskell99Pointfree.P2 (p2,p2',p2'',p2''',p2'''',p2_5, p2_6 , p2_7) where
 
 
 import Control.Applicative
 import Control.Monad
-import Data.Bool.HT
+import Data.Bool.HT (ifThenElse , if')
+import Control.Monad.Extra (ifM)
 
 --simple, unsafe version
 p2 :: [a] -> a
@@ -28,16 +29,18 @@ p2''' = liftA3 ifThenElse ( (<=) 2  . length ) (Just . head . tail . reverse ) (
 p2'''':: [a] -> Maybe a
 p2'''' = join ((. (Just . head . tail . reverse)) . flip (. id) Nothing  . flip . ifThenElse .  (2 <=) . length )
 
---safe version (using either)
+
+-- !!!!test missing!!!!!!!
+--safe version (using either) and for convenience/variety ifM is used
 p2_5 :: [a] -> Either String a
-p2_5 = undefined
-{-
+p2_5 = ifM ( (  >= 2 ) . length ) (Right . last . init) (const (Left "no such element"))
+
+-- !!!!test missing!!!!!!!
 --safe version (using a default value)
 p2_6 :: [a] -> a -> a
-p2_6 = join (( flip flip  . (if . (<=) 2 .  length ))  . last . init  )
+p2_6 =    flip id ((  . ( last . init ) )  . flip  .  ifThenElse   . ( < 2) . length )    .  flip join
 
+-- !!!!test missing!!!!!!!
 --version with custom error message (using error)
 p2_7 :: [a] -> a
-p2_7 =
-
--}
+p2_7 =  join ((   .  (last . init)  ) . flip id (error "no such element") .  ifThenElse  . ( < 2) . length)
