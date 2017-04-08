@@ -7,7 +7,7 @@ import Data.Bool.HT
 
 --simple, unsafe version
 p2 :: [a] -> a
-p2 = head . tail . reverse
+p2 = head . tail . reverse  -- or just last . init
 
 
 --more complex and convoluted version, still unsafe
@@ -31,9 +31,13 @@ p2'''' = join ((. (Just . head . tail . reverse)) . flip (. id) Nothing  . flip 
 --safe version (using either)
 p2_5 :: [a] -> Either String a
 p2_5 = undefined
-
+{-
 --safe version (using a default value)
 p2_6 :: [a] -> a -> a
-p2_6 = undefined
+p2_6 = join (( flip flip  . (if . (<=) 2 .  length ))  . last . init  )
 
 --version with custom error message (using error)
+p2_7 :: [a] -> a
+p2_7 =
+
+-}
