@@ -23,7 +23,8 @@ library
                        Haskell99Pointfree.P5,
                        Haskell99Pointfree.P11,
                        Haskell99Pointfree.P12,
-                       Haskell99Pointfree.P15
+                       Haskell99Pointfree.P15,
+                       Haskell99Pointfree.P16
   build-depends:       base >= 4.7 && < 5,
                        utility-ht,
                        extra,
