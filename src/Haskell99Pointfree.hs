@@ -8,6 +8,7 @@ module Haskell99Pointfree
       module Haskell99Pointfree.P11,
       module Haskell99Pointfree.P12,
       module Haskell99Pointfree.P15,
+      module Haskell99Pointfree.P22
   --    module Haskell99Pointfree.P16
     ) where
 
@@ -19,4 +20,5 @@ import Haskell99Pointfree.P5
 import Haskell99Pointfree.P11
 import Haskell99Pointfree.P12
 import Haskell99Pointfree.P15
+import Haskell99Pointfree.P22
 --import Haskell99Pointfree.P16

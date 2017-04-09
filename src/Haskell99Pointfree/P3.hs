@@ -46,3 +46,6 @@ p3_6 =  ( fmap snd . )   .   ( .  ( (. fst) .  (==) ))  . flip find   . zip [1..
 p3_7 :: [a] -> Int -> Maybe a
 p3_7 =
 -}
+--using uncurry
+
+--using ap 
