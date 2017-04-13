@@ -19,7 +19,8 @@ p95' =  intercalate "-" . map (  (!!) nums . digitToInt) . show
 
 --using until
 p95'' :: Int -> String
-p95'' = undefined
+p95'' = undefined 
+
 --safe version
 p95''' :: Int -> Maybe String
 p95''' = undefined
