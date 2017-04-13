@@ -16,7 +16,7 @@ extra-source-files:  README.md
 library
   hs-source-dirs:      src
   exposed-modules:     Haskell99Pointfree ,
-                       Haskell99Pointfree.P1,
+                       Haskell99Pointfree.P01,
                        Haskell99Pointfree.P2,
                        Haskell99Pointfree.P3,
                        Haskell99Pointfree.P4,
