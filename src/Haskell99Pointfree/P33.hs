@@ -2,7 +2,8 @@ module Haskell99Pointfree.P33
     (p33, p33', p33''
     ) where
 
-import Control.Arrow
+
+import Control.Monad
 
 p33 :: Int -> Int -> Bool
 p33 = ((==) 1 . ) . gcd
@@ -11,6 +12,5 @@ p33 = ((==) 1 . ) . gcd
 p33' :: Int -> Int -> Bool
 p33' = undefined
 
---using arrows (redundant nonsense version)
 p33'' :: Int -> Int -> Bool
-p33'' = ((== 1) <<< ) <<< curry app <<< curry app gcd
+p33'' = ap (const (== 1) ) . gcd 
