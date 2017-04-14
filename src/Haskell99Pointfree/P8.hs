@@ -12,5 +12,5 @@ p8, p8' :: Eq a => [a] -> [a]
 
 p8 = map head . group
 
-
+--under construction
 p8' =  liftA2 (foldr   (  ( liftM3  if' (uncurry(flip( (==) . fst ))) () ()   . ) . (,) )   )      ((,[]) . head)    tail

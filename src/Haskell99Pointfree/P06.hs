@@ -1,6 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 module Haskell99Pointfree.P06
-    ( p06, p06', p06'', p06''', p06_4, p06_5
+    ( p06, p06', p06'', p06''', p06_4, p06_5, p06_6
     ) where
 
 import Control.Applicative
@@ -10,7 +10,7 @@ import Data.List
 import Control.Arrow
 import Data.Bool.HT
 
-p06, p06', p06'', p06''', p06_4, p06_5 :: Eq a => [a] -> Bool
+p06, p06', p06'', p06''', p06_4, p06_5, p06_6 :: Eq a => [a] -> Bool
 
 
 p06 = ((<= 1) . length)  .  until(liftA2 (||) (  (<= 1) . length) (liftA2 (/=) head last)) (init . tail)
@@ -29,3 +29,6 @@ p06_4 =  snd . join (foldl ( ( .  ( (uncurry (&&) . ) . first .  (. head)  . (==
 
 
 p06_5 =    join ( ( . ( uncurry( (==) . reverse ) . ) ) . ifM ( odd . length)   . (uncurry(flip(  (==) . reverse . tail )) . ) )  (join (splitAt . flip div 2 . length) )
+
+
+p06_6  = uncurry isPrefixOf . second reverse .  ap (flip splitAt) (flip div 2 . length)   
