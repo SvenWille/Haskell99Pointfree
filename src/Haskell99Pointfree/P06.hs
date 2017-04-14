@@ -1,3 +1,4 @@
+{-# LANGUAGE TupleSections #-}
 module Haskell99Pointfree.P06
     ( p06, p06', p06'', p06''', p06_4, p06_5
     ) where
@@ -23,8 +24,8 @@ p06'' = and . liftA2 (zipWith (==)) id reverse
 --does redundant comparisons
 p06''' = ap (==) reverse
 
---does unnecessary comparisons
-p06_4 = undefined -- join (foldl ( (==) . head ))
+--does unnecessary comparisons, uses arrows
+p06_4 =  snd . join (foldl ( ( .  ( (uncurry (&&) . ) . first .  (. head)  . (==) )   )  .  flip ( (tail . fst) &&&) )  . (,True)  .  reverse)
 
 
 p06_5 =    join ( ( . ( uncurry( (==) . reverse ) . ) ) . ifM ( odd . length)   . (uncurry(flip(  (==) . reverse . tail )) . ) )  (join (splitAt . flip div 2 . length) )
