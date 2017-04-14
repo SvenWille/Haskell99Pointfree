@@ -10,6 +10,7 @@ import Control.Arrow
 import Data.Bool.HT
 import Control.Applicative
 import Control.Monad
+import Control.Monad.Extra
 
 --crashes on negative numbers
 p95 :: Int -> String
@@ -27,11 +28,15 @@ p95'' = intercalate "-" .  map  (nums !!) .   snd .  until ( (>) 1 . fst ) ( ( f
   where
     nums = ["zero", "one" , "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
-  {-
+
 --safe version
 p95''' :: Int -> Maybe String
-p95''' =  liftA2  (flip ifThenElse Nothing)  (< 0) ( until ( (< 1) . fst ) ( )  )
--}
+p95''' =  liftA2  (`ifThenElse` Nothing)  (< 0) ( Just . intercalate "-" . map (nums !!) . snd .  until ( (< 1) . fst ) ( liftA2 (,) ( (`div` 10) . fst)  (uncurry( (:)  . (`mod` 10) )) )  . liftA2 (,) (`div` 10) ((:[]) . (`mod` 10)))
+  where
+    nums = ["zero", "one" , "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
 --safe version that also works with negative numbers
 p95_4 :: Int -> String
-p95_4 = undefined
+p95_4 = join (   ifM (< 0)  .   (("minus-" ++) . ) )  ( intercalate "-" . map (nums !!) . snd . join  (  ( . ) .  until  ((< 1) . fst)  )     (liftA2 (,) ( flip div 10 . fst )  (uncurry( (:) .  flip mod 10))) . (,[]) .abs )
+  where
+    nums = ["zero", "one" , "two", "three", "four", "five", "six", "seven", "eight", "nine"]
