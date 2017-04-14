@@ -21,6 +21,7 @@ library
                        Haskell99Pointfree.P3,
                        Haskell99Pointfree.P4,
                        Haskell99Pointfree.P5,
+                       Haskell99Pointfree.P06,
                        Haskell99Pointfree.P11,
                        Haskell99Pointfree.P12,
                        Haskell99Pointfree.P15,
