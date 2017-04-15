@@ -5,6 +5,7 @@ import Data.Bool.HT
 import Control.Monad
 import Control.Applicative
 import Control.Monad.Extra
+import Control.Monad.Fix
 
 
 -- safe version using maybe
@@ -33,3 +34,7 @@ p01'''' = liftA2 ifThenElse (not . null) last
 --using ifM from Control.Monad.Extra
 p01_5 :: [a] -> Maybe a
 p01_5 = ifM null (const Nothing) (Just . last)
+
+--using fix for recursion
+p01_6 :: [a] -> Maybe a
+p01_6 = fix (ifM null  (const Nothing) . ifM ( (== 1) . length) (Just . head) .  ( . tail) )
