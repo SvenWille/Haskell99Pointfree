@@ -18,7 +18,7 @@ library
   exposed-modules:     Haskell99Pointfree ,
                        Haskell99Pointfree.P01,
                        Haskell99Pointfree.P02,
-                       Haskell99Pointfree.P3,
+                       Haskell99Pointfree.P03,
                        Haskell99Pointfree.P04,
                        Haskell99Pointfree.P5,
                        Haskell99Pointfree.P06,
@@ -26,6 +26,8 @@ library
                        Haskell99Pointfree.P12,
                        Haskell99Pointfree.P15,
                        Haskell99Pointfree.P16,
+                       Haskell99Pointfree.P20,
+                       Haskell99Pointfree.P21,
                        Haskell99Pointfree.P22,
                        Haskell99Pointfree.P23,
                        Haskell99Pointfree.P95
