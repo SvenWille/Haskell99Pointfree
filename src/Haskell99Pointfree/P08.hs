@@ -6,14 +6,14 @@ import Data.List
 import Control.Applicative
 import Control.Monad
 import Data.Bool.HT
+import Data.Function
 
 
 p08_1 :: Eq a => [a] -> [a]
 p08_1 = map head . group
-{-
---under construction
+
 p08_2 :: Eq a => [a] -> [a]
-p08_2 = ap (flip ifThenElse [] . null ) ( snd  .foldr (join(  liftA3 if'   .  ( . fst)  .  (==)  )) . liftA2 (,) id (:[]) . head )
+p08_2 = ap (flip ifThenElse [] . null ) ( snd . join (foldr (join(( . join (( . (( . snd) . (:)) ) . (.) . (,))) . ( $ id) . liftA3 if' . ( . fst) . (==))) . liftA2 (,) id (:[]) . head ))
 
 
 --variation on p08_2 using foldl instead of foldr
@@ -21,4 +21,3 @@ p08_2 = ap (flip ifThenElse [] . null ) ( snd  .foldr (join(  liftA3 if'   .  ( 
 --using until
 p08_4 :: Eq a => [a] -> [a]
 p08_4 = undefined
--}
