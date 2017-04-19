@@ -16,6 +16,8 @@ p09_1 = group
 
 --using fix
 p09_2 :: Eq a => [a] -> [[a]];
-p09_2 = fix (   ( . (flip if' []  . null) ) .  (.))
+p09_2 = fix (   ( . (flip if' []  . null) ) . if'  . (  . ) . (. ))
+  where
+    alias1 =
 
 --using fix tailrecursively
