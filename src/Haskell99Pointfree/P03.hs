@@ -7,7 +7,9 @@ import Data.Bool.HT (if')
 import Control.Monad
 import Control.Lens
 import Data.List (find) --used in p3_6
-import Control.Monad.Fix
+import Control.Monad.Fix (mfix,fix)
+import Control.Monad.Extra (ifM)
+
 
 
 --insecure
@@ -24,15 +26,18 @@ p03_3 :: [a] -> Int -> Maybe a
 p03_3 = join .  join ( (    . (( flip if' Nothing .  ) . join . ( . (||) .(<= 0 )) . flip (.) . (<) .  length )  )  . (.) . flip (.) . ( (Just . last) .)  . flip take )
 
 
---"simplified" version of p3_2
+--"simplified" version of p03_2
 p03_4 :: [a] -> Int -> Maybe a
 p03_4 =   ( . subtract 1 ) .  ap ( liftM2 (flip ( `if'` Nothing))   (Just . head) .  ( . null) . (||) . (>) 0) . flip drop
 
+
 --recursive
+--not a very good solution since it introduces an extra parameter which must be used correctly (indexing starts with 1)
+--I choose the third parameter as "counter"
 {-
-p3_5   :: [a] -> Int -> Maybe a
-p3_5 =  flip if' Nothing . ( . (<= 0))  .  (||) .  null
--}
+p03_5 :: [a] -> Int -> Int -> Maybe a
+p03_5 = ap ( flip if' Nothing .  null ) ()
+  -}
 
 --using zip and find
 p03_6 :: [a] -> Int -> Maybe a
@@ -49,12 +54,17 @@ p03_7 =   join ( ( . alias1) . liftM2 ( `if'` Nothing) .  ( . (<= 0) ) . (||) . 
 p03_8 :: [a] -> Int -> a -> Either a a
 p03_8 =
 -}
---using ap
 {-
+--using ap
+p03_9 :: [a] -> Int -> Maybe a
+p03_9 =
+-}
 --using mfix
 p03_10 :: [a] -> Int -> Maybe a
-p03_10 = ap (flip if' Nothing . null) (   . flip (mfix ()) . (1,))
--}
+p03_10 = ap (liftM2 (`if'` Nothing)  . liftM2 ( ( . ) . (||) ) null (liftM2 (||) (<= 0)  . (<) . length)) (flip (mfix ( ( . ( ( . fst) . (==))) .  (flip . flip (liftM3 if')) (Just . head . snd) . ( .  (over _2 tail . over _1 (+1) )))) . (1,))
+
 --using foldr
 p03_11 :: [a] -> Int -> Maybe a
 p03_11 = ( .  (flip foldr Nothing.  join .   ((flip .flip  if') (const . Just. snd)  (const id) . )  . ( . fst)  . (==)   ) ) . flip ($) . zip [1..]
+
+--using fix (not to be confused with mfix)
