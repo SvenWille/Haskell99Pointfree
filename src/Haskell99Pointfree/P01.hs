@@ -38,3 +38,9 @@ p01_6 = ifM null (const Nothing) (Just . last)
 --using fix for recursion
 p01_7 :: [a] -> Maybe a
 p01_7 = fix (ifM null  (const Nothing) . ifM ( (== 1) . length) (Just . head) .  ( . tail) )
+
+--tool generated solution (atom plugin)
+p01_8 :: [a] -> Maybe a
+--original form:
+--p01_8 ls = if null ls then Nothing else Just (last ls)
+p01_8 = ap (flip if' Nothing . null) (Just . last)
