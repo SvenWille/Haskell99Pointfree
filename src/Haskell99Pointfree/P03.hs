@@ -36,7 +36,7 @@ p03_4 =   ( . subtract 1 ) .  ap ( liftM2 (flip ( `if'` Nothing))   (Just . head
 --I choose the third parameter as "counter"
 {-
 p03_5 :: [a] -> Int -> Int -> Maybe a
-p03_5 = ap ( (ap . if'  .  . (||) . null ) (  . join  )
+p03_5 = ap ( (flip if' Nothing . ) . ( . (<=1)) . (||) . null)  (  liftM2 (if')  )
 -}
 
 --using zip and find
@@ -54,11 +54,11 @@ p03_7 =   join ( ( . alias1) . liftM2 ( `if'` Nothing) .  ( . (<= 0) ) . (||) . 
 p03_8 :: [a] -> Int -> a -> Either a a
 p03_8 =
 -}
-{-
+
 --using ap
 p03_9 :: [a] -> Int -> Maybe a
-p03_9 =
--}
+p03_9 = ap (ap . ( flip if' Nothing . ) . liftM2 (||) (< 1)  . (<) . length )  ( ( (Just . head . (^._3) . until (liftM2 (==) (^._1) (^._2) ) (liftM3 (,,)  ((+1) . (^._1)) (^._2) (tail . (^._3)) )) . ) . flip (1,,))
+
 --using mfix
 p03_10 :: [a] -> Int -> Maybe a
 p03_10 = ap (liftM2 (`if'` Nothing)  . liftM2 ( ( . ) . (||) ) null (liftM2 (||) (<= 0)  . (<) . length)) (flip (mfix ( ( . ( ( . fst) . (==))) .  (flip . flip (liftM3 if')) (Just . head . snd) . ( .  (over _2 tail . over _1 (+1) )))) . (1,))
