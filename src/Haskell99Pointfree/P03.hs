@@ -36,8 +36,8 @@ p03_4 =   ( . subtract 1 ) .  ap ( liftM2 (flip ( `if'` Nothing))   (Just . head
 --I choose the third parameter as "counter"
 {-
 p03_5 :: [a] -> Int -> Int -> Maybe a
-p03_5 = ap ( flip if' Nothing .  null ) ()
-  -}
+p03_5 = ap ( (ap . if'  .  . (||) . null ) (  . join  )
+-}
 
 --using zip and find
 p03_6 :: [a] -> Int -> Maybe a
