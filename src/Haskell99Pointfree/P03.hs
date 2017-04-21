@@ -68,3 +68,9 @@ p03_11 :: [a] -> Int -> Maybe a
 p03_11 = ( .  (flip foldr Nothing.  join .   ((flip .flip  if') (const . Just. snd)  (const id) . )  . ( . fst)  . (==)   ) ) . flip ($) . zip [1..]
 
 --using fix (not to be confused with mfix)
+p03_12 :: [a] -> Int -> Maybe a
+p03_12 = ap (flip if' Nothing . ((< 1):: Int -> Bool)) .  fix  ( flip .  liftM2 ( `if'` ( const . const Nothing)) null  .  branch) 1
+  where
+    branch :: (Int -> [a]  -> Int -> Maybe a) -> [a] -> Int -> Int -> Maybe a
+    --branch recu ls pos goal = if pos == goal then Just $ head ls else recu  (pos + 1) (tail ls) goal
+    branch =  ap (   ap  .  ( . (==)) . liftM2  . flip if'  .  Just . head  )   . ( (. (+1)) . )  . ( . tail ) . flip
