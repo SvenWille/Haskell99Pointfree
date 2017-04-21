@@ -49,11 +49,17 @@ p03_7 :: [a] -> Int -> Maybe a
 p03_7 =   join ( ( . alias1) . liftM2 ( `if'` Nothing) .  ( . (<= 0) ) . (||) . null )
   where
     alias1 = ( (  liftM2 ( `if'` Nothing)  null (Just . head)  . (^._3) . until  (liftM2 (||) (liftM2 (==) (^._1) (^._2)) (null . (^._3) ) )    (liftM3 (,,) ( (+1) . (^._1))  (^._2) (tail . (^._3))  )) . ) .  flip (1,,)
-{-
---using  either with a default value
+
+--using  either with a default value.
 p03_8 :: [a] -> Int -> a -> Either a a
-p03_8 =
--}
+p03_8 =   flip . flip  ( flip ap tmp1  . tmp2)
+  where
+    --this returns the desired element when the conditions in tmp2 are all false (meaning that the passed index is valid)
+    tmp1 :: [a] -> Int -> Either a a
+    tmp1 =  (Right . ) . ( . subtract 1) . (!!)
+    --tmp2 checks the if the passed inded is valid. If it is invalid it returns the default element wrapped in "Left", otherwise tmp1 will be executed
+    tmp2 :: a -> [a] -> (Int -> Either a a) -> Int -> Either a a
+    tmp2 =   (ap . ) . ( . join ((. liftM2 (||) (< 1) . (<) . length ) . (.) . (||) . null)) .  (.) . flip if' . Left
 
 --using ap
 p03_9 :: [a] -> Int -> Maybe a
