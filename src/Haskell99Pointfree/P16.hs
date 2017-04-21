@@ -9,10 +9,10 @@ import Control.Monad.Extra (ifM)
 import Control.Monad (ap)
 
 --Problem 16: drop every nth element from a list
-
+{-
 p16 :: [a] -> Int -> [a]
 p16 =  (  .  flip (( , , ) 1) [])  .  flip (foldl (liftA3 if' () () ()  ))
-
+-}
 --more elegant version with ifM
 
 {-
@@ -25,7 +25,7 @@ p16'' =
 p16''' :: [a] -> Int -> [a]
 p16''' =  (map fst . ) . ap (filter . ( . snd) . (/=) )  . ( . (cycle . enumFromTo (1::Int) . max 1 )) .  zip
 
-
+{-
 --variation of p16''' returning Nothing on invalid integer input (like zero or negative numbers)
 p16_5 :: [a] -> Int -> Maybe [a]
 p16_5 = flip (   join  (  (  .     join    (zip . (cycle . enumFromTo (1::Int)  ))  )  .  (flip id) (const Nothing)   . if'  . (>=) 0 ))
@@ -33,3 +33,4 @@ p16_5 = flip (   join  (  (  .     join    (zip . (cycle . enumFromTo (1::Int)  
 --simler version of p16_5
 p16_6 :: [a] -> Int -> Maybe [a]
 p16_6 =
+-}
