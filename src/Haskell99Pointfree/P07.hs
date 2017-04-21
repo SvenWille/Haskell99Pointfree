@@ -1,14 +1,17 @@
-{-# LANGUAGE DeriveDataTypeable , TemplateHaskell #-}
+{-# LANGUAGE DeriveDataTypeable , TemplateHaskell, TupleSections #-}
 module Haskell99Pointfree.P07
     (
     ) where
 
 
-import Control.Lens (makePrisms , preview)
+import Control.Lens (makePrisms , preview , over , _1)
 import Control.Lens.Extras (is)
 import Control.Monad.Extra (ifM)
-import Data.DeriveTH (makeIs )
+import Data.DeriveTH (makeIs, makeFrom, derive )
 import Data.Maybe (fromJust)
+import Control.Applicative (liftA2)
+import Data.Data
+import Data.Typeable
 
 --using Prisms
 data NestedList a = List [NestedList a] | Elem a
@@ -27,13 +30,31 @@ makePrisms ''NestedList2
 
 p07_2 :: NestedList2 a -> [a]
 p07_2 =  ifM (is _Elem2) ( (:[]) . val) (concatMap p07_2 . children)
-{-
+
 --using the derive library
-data NestedList2 a = List2 [NestedList2 a] | Elem2 a
+data NestedList3 a = List3 [NestedList3 a] | Elem3 a
 
-$(derive makeIs ''NestedList2 )
+$(derive makeIs ''NestedList3 )
+$(derive makeFrom ''NestedList3 )
 
---using a stack (which is the build-in list)
-p07_2 :: NestedList a -> [a]
-p07_2 =   until (null . fst ) () . (,[])
+--using a stack (which is basically the build-in list)
+p07_3 :: NestedList3 a -> [a]
+p07_3 =  reverse . snd . until (null . fst ) (ifM (isElem3 . head . fst) buildTupleElem buildTupleList) . (,[])  . (:[])
+  where
+
+    --this branch is taken if the top element from the stack is an element (Elem3)
+    buildTupleElem :: ([NestedList3 a],[a]) -> ([NestedList3 a],[a])
+    buildTupleElem = liftA2 (,) (tail . fst)  (liftA2 (:) (fromElem3 . head . fst) snd )
+
+    --this branch is taken if the top element from the stack is a List3 (a nested list)
+    buildTupleList :: ([NestedList3 a],[a]) -> ([NestedList3 a],[a])
+    buildTupleList =  over _1 (liftA2 (++) ( fromList3 . head ) tail)
+
+{-
+--using data and typeable with fix
+data NestedList4 a = List4 [NestedList4 a] | Elem4 a deriving (Data , Typeable)
+
+
+p07_4 :: NestedList4 a -> [a]
+p07_4 =  fix
 -}
