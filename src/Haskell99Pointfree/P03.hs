@@ -34,10 +34,16 @@ p03_4 =   ( . subtract 1 ) .  ap ( liftM2 (flip ( `if'` Nothing))   (Just . head
 --recursive
 --not a very good solution since it introduces an extra parameter which must be used correctly (indexing starts with 1)
 --I choose the third parameter as "counter"
-{-
+
 p03_5 :: [a] -> Int -> Int -> Maybe a
-p03_5 = ap ( (flip if' Nothing . ) . ( . (<=1)) . (||) . null)  (  liftM2 (if')  )
--}
+p03_5 = ap ( liftM2 (`if'` const  Nothing)  . ( . (< 1) )  .  (||) . null) secondPart
+  where
+    --this one will be executed if the index is valid and the list in not empty
+    secondPart :: [a] -> Int -> Int -> Maybe a
+    secondPart =  liftM2 thirdPart  ( Just . head) ( ( . (+1) )  . p03_5 . tail)
+      where
+        thirdPart =  ap . ( . (==) ) . liftM2 . flip if'
+
 
 --using zip and find
 p03_6 :: [a] -> Int -> Maybe a
