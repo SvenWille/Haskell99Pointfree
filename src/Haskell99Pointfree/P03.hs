@@ -33,7 +33,7 @@ p03_4 =   ( . subtract 1 ) .  ap ( liftM2 (flip ( `if'` Nothing))   (Just . head
 
 --recursive
 --not a very good solution since it introduces an extra parameter which must be used correctly (indexing starts with 1)
---I choose the third parameter as "counter"
+--I choose the second parameter as "counter"
 
 p03_5 :: [a] -> Int -> Int -> Maybe a
 p03_5 = ap ( liftM2 (`if'` const  Nothing)  . ( . (< 1) )  .  (||) . null) secondPart
