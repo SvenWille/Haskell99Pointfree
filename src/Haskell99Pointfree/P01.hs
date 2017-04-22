@@ -2,8 +2,8 @@ module Haskell99Pointfree.P1 (p01_1,p01_2,p01_3,p01_4,p01_5,p01_6) where
 
 
 import Data.Bool.HT (if', ifThenElse)
-import Control.Monad
-import Control.Applicative
+import Control.Monad (join)
+import Control.Applicative (liftA2, liftA3, (<*>))
 import Control.Monad.Extra (ifM)
 import Control.Monad.Fix (fix)
 
@@ -39,8 +39,8 @@ p01_6 = ifM null (const Nothing) (Just . last)
 p01_7 :: [a] -> Maybe a
 p01_7 = fix (ifM null  (const Nothing) . ifM ( (== 1) . length) (Just . head) .  ( . tail) )
 
---tool generated solution (atom plugin)
 p01_8 :: [a] -> Maybe a
---original form:
---p01_8 ls = if null ls then Nothing else Just (last ls)
-p01_8 = ap (flip if' Nothing . null) (Just . last)
+p01_8 = flip if' Nothing . null <*>  Just .last
+
+p01_9 :: [a] -> Maybe a
+p01_9 = Just . last >>= ( . null) . flip ( `if'` Nothing) 
