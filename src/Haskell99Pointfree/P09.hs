@@ -19,12 +19,15 @@ p09_1 = group
 
 --using foldr
 p09_2 :: Eq a => [a] -> [[a]]
-p09_2 = ifM null (const []) ( (((^._3) . ) . foldr foldrHelper)  =<<   join ((,,[]). head)    )
+p09_2 = ifM null (const []) (   liftA2 (,,[]) id (:[]) . last >>=    (( liftA2  (:) (^._2) (^._3) . ) . ( .   init ) . foldr foldrHelper ) )
   where
     foldrHelper :: Eq a => a -> (a , [a], [[a]]) -> (a, [a], [[a]])
-    foldrHelper = ap (flip ifM ifMTrueBranch .  ( . (^._1))  .  (==))   (( . (liftA2 (:) (^._2) (^._3))) . (,[],))
+    foldrHelper = ap (flip ifM ifMTrueBranch .  ( . (^._1))  .  (==))   (( . liftA2 (:) (^._2) (^._3)) . liftA2 (,,) id (:[])   )
       where
+        ifMTrueBranch :: (a,[a],[[a]]) -> (a,[a],[[a]])
         ifMTrueBranch = join (over _2 . (:) . (^._1))
+
+
 --using until with takewhile and dropwhile
 
 {-

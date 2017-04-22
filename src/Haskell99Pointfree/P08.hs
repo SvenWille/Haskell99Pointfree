@@ -1,3 +1,4 @@
+{-# LANGUAGE TupleSections #-}
 module Haskell99Pointfree.P08
     (p08_1, p08_2
     ) where
@@ -18,6 +19,6 @@ p08_2 = ap (flip ifThenElse [] . null ) ( snd . join (foldr (join(( . join (( . 
 
 --variation on p08_2 using foldl instead of foldr
 
---using until
+--using until with takewhile and dropwhile
 p08_4 :: Eq a => [a] -> [a]
-p08_4 = undefined
+p08_4 = reverse . snd . until ( null . fst ) (liftA2 (,) ( join (dropWhile . (==) . head) . fst) (liftA2 (:) (head . fst)  snd ) )  . (,[])
