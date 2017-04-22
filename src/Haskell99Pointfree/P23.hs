@@ -5,7 +5,7 @@ module Haskell99Pointfree.P23
 
 import System.Random
 import Control.Applicative
-import System.IO.Unsafe
+import System.IO.Unsafe --used in p23''
 import Control.Monad
 import Control.Arrow
 import Data.List
