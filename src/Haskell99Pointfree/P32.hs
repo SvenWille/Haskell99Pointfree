@@ -1,5 +1,5 @@
 module Haskell99Pointfree.P32
-    (
+    (p32_1, p32_2
     ) where
 
 
