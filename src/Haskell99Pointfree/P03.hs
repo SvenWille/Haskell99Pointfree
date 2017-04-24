@@ -68,6 +68,7 @@ p03_8 =   flip . flip  ( flip ap tmp1  . tmp2)
     tmp2 =   (ap . ) . ( . join ((. liftM2 (||) (< 1) . (<) . length ) . (.) . (||) . null)) .  (.) . flip if' . Left
 
 --using ap
+--does not work for infinite lists
 p03_9 :: [a] -> Int -> Maybe a
 p03_9 = ap (ap . ( flip if' Nothing . ) . liftM2 (||) (< 1)  . (<) . length )  ( ( (Just . head . (^._3) . until (liftM2 (==) (^._1) (^._2) ) (liftM3 (,,)  ((+1) . (^._1)) (^._2) (tail . (^._3)) )) . ) . flip (1,,))
 

@@ -7,6 +7,7 @@ import Control.Applicative (liftA2, liftA3, (<*>))
 import Control.Monad.Extra (ifM)
 import Control.Monad.Fix (fix)
 
+--obviously none of the following solutions will work for infinite lists 
 
 -- safe version using maybe
 -- instead of "head . reverse" one could use "last"
@@ -43,4 +44,4 @@ p01_8 :: [a] -> Maybe a
 p01_8 = flip if' Nothing . null <*>  Just .last
 
 p01_9 :: [a] -> Maybe a
-p01_9 = Just . last >>= ( . null) . flip ( `if'` Nothing) 
+p01_9 = Just . last >>= ( . null) . flip ( `if'` Nothing)
