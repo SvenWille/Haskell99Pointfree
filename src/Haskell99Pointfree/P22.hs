@@ -19,7 +19,7 @@ p22'' =
 --version using "<*>"
 p22''' :: Int -> Int -> [Int]
 p22''' =
--} 
+-}
 {-
 --using until
 p22_4 ::
