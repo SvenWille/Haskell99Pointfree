@@ -51,10 +51,11 @@ p07_3 =  reverse . snd . until (null . fst ) (ifM (isElem3 . head . fst) buildTu
     buildTupleList =  over _1 (liftA2 (++) ( fromList3 . head ) tail)
 
 {-
---using data and typeable with fix
+--using data and typeable
 data NestedList4 a = List4 [NestedList4 a] | Elem4 a deriving (Data , Typeable)
 
-
+--using fix tailrecursively
 p07_4 :: NestedList4 a -> [a]
-p07_4 =  fix
+p07_4 =  fix ()
+
 -}
