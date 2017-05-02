@@ -57,5 +57,4 @@ data NestedList4 a = List4 [NestedList4 a] | Elem4 a deriving (Data , Typeable)
 --using fix tailrecursively
 p07_4 :: NestedList4 a -> [a]
 p07_4 =  fix ()
-
 -}
