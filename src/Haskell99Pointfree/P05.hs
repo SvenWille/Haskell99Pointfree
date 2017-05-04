@@ -12,7 +12,7 @@ import Control.Monad.Extra
 p05_1 :: [a] -> [a]
 p05_1 =  ifM (not . null) (join    ((  . (flip (:) [] .  head )) . (++)  . p05_1 . tail) ) (const [])
 
---same as p05_1 but using ifThenElse instead of ifM
+
 p05_2 :: [a] -> [a]
 p05_2 = liftA3 ifThenElse null (const []) (  flip (flip (++) . take 1) =<< p05_2 . tail )
 

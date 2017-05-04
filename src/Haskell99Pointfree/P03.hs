@@ -47,7 +47,7 @@ p03_5 = ap ( liftM2 (`if'` const  Nothing)  . ( . (< 1) )  .  (||) . null) secon
 
 --using zip and find
 p03_6 :: [a] -> Int -> Maybe a
-p03_6 =  ( fmap snd . )   .   ( .  ( (. fst) .  (==) ))  . flip find   . zip [1..]
+p03_6 =  (fmap snd . ) . ( . ( (. fst) . (==) )) . flip find . zip [1..]
 
 
 --using until

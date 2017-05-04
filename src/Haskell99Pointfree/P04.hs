@@ -37,6 +37,6 @@ p04_6 =   liftM3 if' null (const 0) ((+1) . p04_6 . tail)
 p04_7 :: [a] -> Int
 p04_7 = sum . map (const 1)
 
---using fix
+--using fix from Control.Monad.Fix
 p04_8 :: [a] -> Int
 p04_8 = fix (ifM null (const 0) . ( . tail) . ((+1). ))

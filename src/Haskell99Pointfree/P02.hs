@@ -1,7 +1,7 @@
 module Haskell99Pointfree.P02 (p02_1,p02_2,p02_3,p02_4,p02_5,p02_6, p02_7 , p02_8, p02_9) where
 
 
-import Control.Applicative (liftA2, liftA3)
+import Control.Applicative (liftA2, liftA3, (<*>))
 import Control.Monad (join, ap)
 import Data.Bool.HT (ifThenElse , if')
 import Control.Monad.Extra (ifM)
@@ -24,7 +24,11 @@ p02_2 =  head . ap (flip drop)   ( flip (-) 2 . length)
 p02_3 :: [a] -> Maybe a
 p02_3 = join ( (. (Just . head . tail . reverse) ) .  ($ Nothing) .flip  . ifThenElse .  (2 <=) . length )
 
---alternative version of p2''
+--using (<*>) from Control.Applicative
+p02_3A :: [a] -> Maybe a
+p02_3A =   flip if' Nothing . (< 2) . length <*>  Just . last . init
+
+--alternative version of p02_3
 p02_4 :: [a] -> Maybe a
 p02_4 = liftA3 ifThenElse ( (<=) 2  . length ) (Just . head . tail . reverse ) (const Nothing)
 
