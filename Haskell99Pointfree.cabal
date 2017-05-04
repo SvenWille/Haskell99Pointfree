@@ -42,6 +42,7 @@ library
                        Haskell99Pointfree.P24,
                        Haskell99Pointfree.P31,
                        Haskell99Pointfree.P32,
+                       Haskell99Pointfree.P46,
                        Haskell99Pointfree.P54,
                        Haskell99Pointfree.P95
   build-depends:       base >= 4.7 && < 5,
