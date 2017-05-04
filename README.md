@@ -111,7 +111,7 @@ p09_3 :: Eq a => [a] -> [[a]]
 p09_3 = reverse . snd . until ( null . fst ) nextStep . (,[])
   where
     nextStep :: Eq a => ([a],[[a]]) -> ([a],[[a]])
-    nextStep = liftA2 (,) (join (dropWhile . (==) . head) . fst) ( (flip (:) . snd) <*>   join (takeWhile    . (==) . head) . fst )
+    nextStep = liftA2 (,) (join (dropWhile . (==) . head) . fst) ( (flip (:) . snd) <*>   join (takeWhile . (==) . head) . fst )
 ```
 
 Problem 10:
@@ -131,4 +131,67 @@ data ListItem a = Multiple Integer a  | Single a deriving Show
 
 p11_1 :: Eq a =>  [a] -> [ListItem a]
 p11_1 =  map ( ifM ( (==1) . fst) ( Single . snd) (liftA2 Multiple fst snd) ) .  p10_1
+```
+
+Problem 12:
+
+```Haskell
+data MorS a = Multiple {nm::Int, val::a} | Single {val::a}  deriving (Data,Typeable)
+
+p12_1 :: Data a => [MorS a] -> [a]
+p12_1  = concatMap (liftA3 ifThenElse (  (==) (toConstr (Single ())) . toConstr )  (replicate 1 . val)  (liftA2 replicate nm val)  )
+
+
+data MorS2 a = Multiple2 Int a | Single2 a deriving (Data,Typeable)
+
+p12_2 :: Data a => [MorS2 a] -> [a]
+p12_2 = concatMap (liftA3 ifThenElse (  (==) (toConstr (Single2 ())) . toConstr )  ( flip (:) [] . fromJust . gmapQi 0 cast  )  ( uncurry replicate .   ((fromJust . gmapQi 0 cast)   &&&  (fromJust . gmapQi 1 cast)) )  )
+```
+
+Problem 13:
+
+```Haskell
+p13_2 :: Eq a => [a] -> [ListItem a]
+p13_2 =  liftA2 (`if'` [] ) null (reverse   . (  (:) . ifM ( (==1) . view _1) (Single . (^._2) ) ( Multiple . (^._1) <*> view _2) <*> view _4) .  join ((until (null . view _3) nextStep . ) . (. tail) . (1,,,[]) . head))
+  where
+    nextStep :: Eq a => (Integer , a , [a], [ListItem a]) -> (Integer ,a , [a] , [ListItem a])
+    nextStep = ifM ( join (( . view _2 ) . (==) . head . view _3 )) ( over _3 tail  . over _1 (+1) ) ( liftA3 (1,,,) (head . view _3) (tail . view _3 ) (liftA2 (:) (ifM ( (==1) . view _1) (Single . view _2) (liftA2 Multiple (^._1) (^._2)) ) (view _4) ) )
+```
+
+Problem 14:
+
+```Haskell
+p14_1 :: [a] -> [a]
+p14_1 = concatMap (replicate 2)
+
+p14_4 :: [a] -> [a]
+p14_4 =concat . fix ( ifM null (const []) . liftM2  (:) (replicate 2 . head) . ( . tail))
+```
+
+Problem 15:
+
+```Haskell
+--the "&" is almost the same as "$" but with arguments flipped (but is precedece is one higher)
+p15_1 :: [a] -> Int -> [a]
+p15_1 =  concatMap . replicate & flip
+
+p15_2 :: [a] -> Int -> [a]
+p15_2 =  ( . (,[]) ) .  flip ( ( (concat  . snd) .  ) . foldr ( ap  (  (,)  . fst )    .  liftA2 (flip (:)) snd . ( . fst)  . flip replicate ))
+```
+
+Problem 16:
+
+```Haskell
+p16_4 :: [a] -> Int -> [a]
+p16_4 =  (map fst . ) . ap (filter . ( . snd) . (/=) )  . ( . (cycle . enumFromTo (1::Int) . max 1 )) .  zip
+```
+
+Problem 17:
+
+```Haskell
+p17_1 :: [a] -> Int -> ([a],[a])
+p17_1 = flip splitAt
+
+p17_2 :: [a] -> Int -> ([a],[a])
+p17_2 =  (liftA2 (,) . take) <*> drop & flip
 ```

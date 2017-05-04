@@ -14,7 +14,7 @@ p17_1 = flip splitAt
 
 --take and drop
 p17_2 :: [a] -> Int -> ([a],[a])
-p17_2 =  (liftA2 (,)    .  take) <*> drop & flip
+p17_2 =  (liftA2 (,) . take) <*> drop & flip
 
 --using until
 p17_3 :: [a] -> Int -> ([a],[a])
