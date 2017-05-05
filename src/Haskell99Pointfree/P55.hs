@@ -2,6 +2,6 @@ module Haskell99Pointfree.P55
     (
     ) where
 
-data 
+data
 
 p55 :: Int ->
