@@ -46,6 +46,7 @@ library
                        Haskell99Pointfree.P54,
                        Haskell99Pointfree.P61,
                        Haskell99Pointfree.P61A,
+                       Haskell99Pointfree.P62,
                        Haskell99Pointfree.P95
   build-depends:       base >= 4.7 && < 5,
                        utility-ht,
