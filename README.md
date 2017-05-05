@@ -195,3 +195,10 @@ p17_1 = flip splitAt
 p17_2 :: [a] -> Int -> ([a],[a])
 p17_2 =  (liftA2 (,) . take) <*> drop & flip
 ```
+
+Problem 18:
+
+```Haskell
+p18_1 :: [a] -> Int -> Int -> [a]
+p18_1 =  (  . (subtract 1  . max 1)) . ap  ( (. flip take) . flip (  .  ) . subtract )  . flip drop
+```
