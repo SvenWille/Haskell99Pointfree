@@ -6,7 +6,9 @@ module Haskell99Pointfree.P05
 import Data.Bool.HT
 import Control.Monad
 import Control.Applicative
-import Control.Monad.Extra
+import Control.Monad.Extra (ifM)
+import Data.List.Extra (snoc, cons)
+import Control.Monad.Fix (fix)
 
 
 p05_1 :: [a] -> [a]
@@ -30,3 +32,16 @@ p05_5 = snd . until (null . fst) (join ((. join ( ( . snd ) . (:) . head . fst) 
 
 p05_6 :: [a] -> [a]
 p05_6 =   join (  (. (p05_6 . tail) ) . flip  ifThenElse [] . null ) >>=  flip (join (  ( . ( flip (++) . take 1 ) ) . flip ifThenElse (const []) . null ))
+
+
+p05_7 :: [a] -> [a]
+p05_7 = foldr (flip snoc) []
+
+
+p05_8 :: [a] -> [a]
+p05_8 = foldl (flip (:)) []
+
+{-
+p05_9 :: [a] -> [a]
+p05_9 = fix ()
+-}

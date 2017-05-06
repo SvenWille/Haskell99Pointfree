@@ -14,7 +14,7 @@ I will present only some of my solutions. For more solutions have a look at the 
 
 In some cases I decided to split up the one-line to make it more readable.
 
-Problem 1: Find the last element of a list 
+Problem 1: Find the last element of a list
 
 ```Haskell
 --using ifM from Control.Monad.Extra
@@ -63,9 +63,16 @@ p04_8 = fix (ifM null (const 0) . ( . tail) . ((+1). ))
 
 Problem 5: Reverse a list
 
-```Haskell 
+```Haskell
 p05_2 :: [a] -> [a]
 p05_2 = liftA3 ifThenElse null (const []) (  flip (flip (++) . take 1) =<< p05_2 . tail )
+
+--using snoc from Data.List.Extra
+p05_7 :: [a] -> [a]
+p05_7 = foldr (flip snoc) []
+
+p05_8 :: [a] -> [a]
+p05_8 = foldl (flip (:)) []
 ```
 
 Problem 6: Check if a given list is a palindrom
@@ -79,9 +86,9 @@ p06_7 :: Eq a => [a] -> Bool
 p06_7  = uncurry isPrefixOf . second reverse .  ap (flip splitAt) (flip div 2 . length)   
 ```
 
-Problem 7: 
+Problem 7:
 
-```Haskell 
+```Haskell
 --using Prisms
 data NestedList a = List [NestedList a] | Elem a
 
@@ -92,7 +99,7 @@ p07_1 :: NestedList a -> [a]
 p07_1 =  ifM (is _Elem) ( (:[]) . fromJust . preview _Elem) (concatMap p07_1 . fromJust . preview _List)
 ```
 
-Problem 8: 
+Problem 8:
 
 ```Haskell
 p08_1 :: Eq a => [a] -> [a]
@@ -103,7 +110,7 @@ p08_4 = reverse . snd . until ( null . fst ) (liftA2 (,) ( join (dropWhile . (==
 ```
 
 
-Problem 9: 
+Problem 9:
 
 ```Haskell
 --trivial solution
