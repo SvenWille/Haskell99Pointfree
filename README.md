@@ -42,6 +42,10 @@ p02_3A =   flip if' Nothing . (< 2) . length <*>  Just . last . init
 --using liftA3 from Control.Applicatice
 p02_4 :: [a] -> Maybe a
 p02_4 = liftA3 ifThenElse ( (<=) 2  . length ) (Just . head . tail . reverse ) (const Nothing)
+
+--using functions from the safe package
+p02_10 :: [a] -> Maybe a
+p02_10 = initMay >=> lastMay
 ```
 
 Problem 3: Return the nth element of a list
