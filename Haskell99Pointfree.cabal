@@ -59,7 +59,8 @@ library
                        lens,
                        syb,
                        derive >= 2.6.2,
-                       random
+                       random,
+                       safe
 
   default-language:    Haskell2010
 

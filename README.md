@@ -26,6 +26,10 @@ p01_8 = flip if' Nothing . null <*>  Just .last
 
 p01_10 :: [a] -> Maybe a
 p01_10 = listToMaybe . reverse
+
+--from the safe package
+p01_11 :: [a] -> Maybe a
+p01_11 = lastMay
 ```
 
 Problem 2: Find the last but one element of a list

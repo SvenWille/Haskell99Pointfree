@@ -7,6 +7,7 @@ import Control.Applicative (liftA2, liftA3, (<*>))
 import Control.Monad.Extra (ifM)
 import Control.Monad.Fix (fix)
 import Data.Maybe (listToMaybe)
+import Safe (lastMay)
 
 --obviously none of the following solutions will work for infinite lists
 
@@ -49,3 +50,7 @@ p01_9 = Just . last >>= ( . null) . flip ( `if'` Nothing)
 
 p01_10 :: [a] -> Maybe a
 p01_10 = listToMaybe . reverse
+
+--from the safe package
+p01_11 :: [a] -> Maybe a
+p01_11 = lastMay
