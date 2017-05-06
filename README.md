@@ -63,6 +63,10 @@ p04_7 = sum . map (const 1)
 --using fix from Control.Monad.Fix
 p04_8 :: [a] -> Int
 p04_8 = fix (ifM null (const 0) . ( . tail) . ((+1). ))
+
+--using the list Monad
+p04_9 :: [a] -> Int
+p04_9 =  sum . flip (>>) [1]
 ```
 
 Problem 5: Reverse a list

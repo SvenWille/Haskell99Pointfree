@@ -2,10 +2,11 @@ module Haskell99Pointfree.P02 (p02_1,p02_2,p02_3,p02_4,p02_5,p02_6, p02_7 , p02_
 
 
 import Control.Applicative (liftA2, liftA3, (<*>))
-import Control.Monad (join, ap)
+import Control.Monad (join, ap, (>>=))
 import Data.Bool.HT (ifThenElse , if')
 import Control.Monad.Extra (ifM)
 import Control.Monad.Fix (fix)
+import Safe (initMay , lastMay)
 
 --obviously none of the following solutions will work for infinite lists
 
@@ -56,3 +57,7 @@ p02_8 =  join ((   .  (last . init)  ) . flip id (error "no such element") .  if
 --using fix for recursion
 p02_9 :: [a] -> Maybe a
 p02_9 = fix (ifM ( (< 2) . length )  (const Nothing) . ifM ( (== 2) . length) (Just . head) .  ( . tail) )
+
+--using functions from the safe package
+p02_10 :: [a] -> Maybe a
+p02_10 = initMay >>= lastMay
