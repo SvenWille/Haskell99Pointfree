@@ -23,6 +23,9 @@ p01_6 = ifM null (const Nothing) (Just . last)
 
 p01_8 :: [a] -> Maybe a
 p01_8 = flip if' Nothing . null <*>  Just .last
+
+p01_10 :: [a] -> Maybe a
+p01_10 = listToMaybe . reverse
 ```
 
 Problem 2: Find the last but one element of a list
