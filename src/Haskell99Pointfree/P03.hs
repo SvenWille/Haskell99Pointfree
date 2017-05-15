@@ -9,12 +9,17 @@ import Control.Lens
 import Data.List (find) --used in p3_6
 import Control.Monad.Fix (mfix,fix)
 import Control.Monad.Extra (ifM)
-
+import Safe (lastMay)
+import Safe.Exact (takeExactMay)
+import Data.Function ((&))
 
 
 --insecure
 p03_1 :: [a] -> Int -> a
 p03_1 =   flip ( (head . ) .  drop . subtract 1)
+
+p03_1A :: [a] -> Int -> a
+p03_1A =    (last . ) . flip take
 
 --safe version
 p03_2 :: [a] -> Int -> Maybe a
@@ -86,3 +91,9 @@ p03_12 = ap (flip if' Nothing . ((< 1):: Int -> Bool)) .  fix  ( flip .  liftM2 
   where
     branch :: (Int -> [a]  -> Int -> Maybe a) -> [a] -> Int -> Int -> Maybe a
     branch =  ap (   ap  .  ( . (==)) . liftM2  . flip if'  .  Just . head  )   . ( (. (+1)) . )  . ( . tail ) . flip
+
+p03_13 :: [a] -> Int -> Maybe a
+p03_13 = (>=> lastMay ) . flip takeExactMay
+
+p03_14 :: [a] -> Int -> Maybe a
+p03_14 = flip (flip ifM (const Nothing) . liftM2 ( ( . )  . (||)) (<= 0) ( ( . length)  . (>))  <*>   ((Just . last) .) . take) 

@@ -40,6 +40,8 @@ library
                        Haskell99Pointfree.P22,
                        Haskell99Pointfree.P23,
                        Haskell99Pointfree.P24,
+                       Haskell99Pointfree.P25,
+                       Haskell99Pointfree.P26,
                        Haskell99Pointfree.P31,
                        Haskell99Pointfree.P32,
                        Haskell99Pointfree.P33,
@@ -60,8 +62,8 @@ library
                        syb,
                        derive >= 2.6.2,
                        random,
-                       safe
-
+                       safe,
+                       QuickCheck
   default-language:    Haskell2010
 
 

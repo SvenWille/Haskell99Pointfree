@@ -56,6 +56,9 @@ p03_4 =   ( . subtract 1 ) .  ap ( liftM2 (flip ( `if'` Nothing))   (Just . head
 
 p03_6 :: [a] -> Int -> Maybe a
 p03_6 =  (fmap snd . ) . ( . ((. fst) . (==))) . flip find . zip [1..]
+
+p03_13 :: [a] -> Int -> Maybe a
+p03_13 = (>=> lastMay ) . flip takeExactMay
 ```
 
 Problem 4: Return the length of a list
