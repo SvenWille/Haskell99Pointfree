@@ -227,3 +227,22 @@ Problem 18:
 p18_1 :: [a] -> Int -> Int -> [a]
 p18_1 =  (  . (subtract 1  . max 1)) . ap  ( (. flip take) . flip (  .  ) . subtract )  . flip drop
 ```
+
+Problem 19:
+
+```Haskell 
+p19_1 :: [a] -> Int -> [a]
+p19_1 = ( . )  . ( ( uncurry (++) .swap) . )  . flip splitAt <*> flip mod . length
+```
+
+Problem 20:
+
+```Haskell
+--unsafe for index <= 0
+p20 :: [a] -> Int -> (a , [a])
+p20 =  ( liftA2 (,) (last . fst) (liftA2 (++) (init . fst ) snd) . ) . flip splitAt
+
+--using find,filter and zip, safe, does not change the list in case of invalid index
+p20_2 :: [a] -> Int -> (Maybe a,[a])
+p20_2 =  ( .  liftA2 (,) ( (fmap snd . ) . find  .  ( . fst)  . (==))  ( (map snd . ) . filter . ( . fst) . (/=) )  ) . flip (uncurry (liftA2 (,))) . zip [1..]
+```
