@@ -27,7 +27,7 @@ p23_1 =   (fmap snd . )  .   ap (( . helper1 ) . (.) .  fmap . foldl  helper3 . 
     helper3 = ( (&&&) (fst . fst)  (uncurry( uncurry (flip (.)) . (***) (!!)   (flip (:)))) . ) . (,)
 
 
--- version using take and nub, If the index is too large or negative , Nothing is returned
+-- If the index is too large or negative , Nothing is returned
 p23_2 :: [a] -> Int -> IO (Maybe [a])
 p23_2  = liftA2 (`if'` return  Nothing) . liftA2 (||) (<0) . (<) . length <*> trueBranch
   where

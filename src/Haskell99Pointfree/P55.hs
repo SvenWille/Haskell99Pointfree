@@ -2,6 +2,7 @@ module Haskell99Pointfree.P55
     (
     ) where
 
-data
+data Tree a = Empty | Branch a (Tree a) (Tree a)
 
-p55 :: Int ->
+p55_1 :: Int -> [Tree a]
+p55_1 = 

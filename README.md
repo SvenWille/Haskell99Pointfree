@@ -246,3 +246,32 @@ p20 =  ( liftA2 (,) (last . fst) (liftA2 (++) (init . fst ) snd) . ) . flip spli
 p20_2 :: [a] -> Int -> (Maybe a,[a])
 p20_2 =  ( .  liftA2 (,) ( (fmap snd . ) . find  .  ( . fst)  . (==))  ( (map snd . ) . filter . ( . fst) . (/=) )  ) . flip (uncurry (liftA2 (,))) . zip [1..]
 ```
+
+Problem 21:
+
+```Haskell
+p21_1 :: a -> [a] -> Int -> [a]
+p21_1 = ( . ( (. subtract 1)  . flip splitAt ) ) . (.) . liftA2 (++) fst . ( . snd)  .  (:)
+```
+
+Problem 22:
+
+```Haskell
+--trivial soution, ignoring descending cases
+p22_1 :: Integer -> Integer -> [Integer]
+p22_1 = enumFromTo
+
+--imporved version of p22_1 where descending cases are taken into account
+p22_2 :: Int -> Int -> [Int]
+p22_2 =  (  liftA3 ifThenElse (uncurry (<)) (uncurry enumFromTo)  (reverse . uncurry (flip enumFromTo)) . ) . (,)
+```
+
+Problem 23:
+
+```Haskell
+-- If the index is too large or negative , Nothing is returned
+p23_2 :: [a] -> Int -> IO (Maybe [a])
+p23_2  = liftA2 (`if'` return  Nothing) . liftA2 (||) (<0) . (<) . length <*> trueBranch
+  where
+    trueBranch = ((( flip fmap  newStdGen . ) . ( . (take:: Int -> [a] -> [a]))) . ) . ( . (((Just .) . ) . (.) )) . flip (.) . flip ( . ) . (nub . ) . randomRs . (0,) . subtract 1 . length <*>  map . (!!)
+```
