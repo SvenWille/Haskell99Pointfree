@@ -1,5 +1,5 @@
 module Haskell99Pointfree.P46
-    (
+    ( and_1 , or_1, equ_1 , xor_1 , nand_1, impl_1
     ) where
 
 
@@ -48,4 +48,4 @@ equ_2 = liftA2 (||) . (&&)   <*>  ( . not ) . (&&)  . not
 
 
 truthTable_1 :: (Bool -> Bool -> Bool) -> IO()
-truthTable_1 =  putStrLn .  unlines . flip map  (replicateM 2 [True, False])  .  (( unwords . map show) . ) . ( ( .(:[]) ). (++)  <*> ) .  ($ last) .  ($ head) .  liftA2 
+truthTable_1 =  putStrLn .  unlines . flip map  (replicateM 2 [True, False])  .  (( unwords . map show) . ) . ( ( .(:[]) ). (++)  <*> ) .  ($ last) .  ($ head) .  liftA2

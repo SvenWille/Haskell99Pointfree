@@ -1,4 +1,4 @@
-{-# LANGUAGE LambdaCase , TupleSections #-}
+{-# LANGUAGE TupleSections #-}
 module Haskell99Pointfree.P96
     (
     ) where
@@ -18,7 +18,6 @@ p96_1 =  ifM null (const False) (ifM ( isLetter . head ) ( ( ifM ( (=='-') . fst
     foldHelper =  ap  .  ( ( ( . (&&) ) . flip (over _2))  . )  . flip (set _1)   <*> (flip any conditions . ) . ( flip ($) . ) . (,) . fst
       where
         conditions =   map uncurry [ ( . (flip any [isDigit, isLetter, (== '-')] . flip ($) ))  . (&&) .  isLetter , ( . (flip any [isDigit, isLetter, (== '-')] . flip ($) ))  . (&&) .  isDigit , ( . (flip any [isDigit, isLetter] . flip ($) ))  . (&&) .  (=='-') ]
-        {-conditions =   map uncurry [ (\ a b -> isLetter a && (isDigit b || isLetter b || b == '-') ) , (\a b -> isDigit a && (b == '-' || isLetter b || isDigit b)) , (\a b -> (a == '-' && (isAlpha b || isDigit b)))  ]-}
 
 --if we allow lambda case
 {-
