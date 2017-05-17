@@ -275,3 +275,27 @@ p23_2  = liftA2 (`if'` return  Nothing) . liftA2 (||) (<0) . (<) . length <*> tr
   where
     trueBranch = ((( flip fmap  newStdGen . ) . ( . (take:: Int -> [a] -> [a]))) . ) . ( . (((Just .) . ) . (.) )) . flip (.) . flip ( . ) . (nub . ) . randomRs . (0,) . subtract 1 . length <*>  map . (!!)
 ```
+
+Problem 24:
+
+```Haskell
+p24_2 :: Int -> Int -> IO (Maybe [Int])
+p24_2 = liftM2 ( `if'` return Nothing) . (>) <*>   ( . (randomRs  . (1,))) . (flip fmap newStdGen .) . (.) . ( . nub) . (Just .) . take
+```
+
+Problem 25:
+
+```Haskell
+p25_1 :: [a] -> IO [a]
+p25_1 =  ( newStdGen <&> ) .  ((view _2 . until condition nextStep) . ) . ap (,[],,)  ( subtract 1 . length )    --first postition is the actual list , second is the new list ,
+  where                                                                                                          --third contains the length  and fourth will contain the "Gen"
+    condition = null . view _1
+    nextStep  =  over _3 (subtract 1) .  join (( . snd) .  set _4 . view (_1._2)).  ( ap (liftA2 (++) . take) (drop. (+1)) . view (_1._1)  >>= over (_2._1) )  . ( ((:) . liftA2 (!!) (view (_2._1) ) (view (_1._1))) >>= over (_2._2) )  . join ((,) . liftA2  (randomR . (0,)) (view _3) (view _4))
+```
+
+Problem 26:
+
+```Haskell
+p26_2 :: Int -> [a] -> [[a]]
+p26_2 =  flip ( ap ( filter   .  ( . length)  .  (==) ) . ((map (map snd)  . nubOn (map fst) . map (sortOn fst. nubOn fst)) . ) .  flip replicateM  . zip [1..])
+```

@@ -14,7 +14,7 @@ import Control.Lens
 --using until
 p25_1 :: [a] -> IO [a]
 p25_1 =  ( newStdGen <&> ) .  ((view _2 . until condition nextStep) . ) . ap (,[],,)  ( subtract 1 . length )    --first postition is the actual list , second is the new list ,
-  where                                                                                              --third contains the length  and fourth will contain the "Gen"
+  where                                                                                                          --third contains the length  and fourth will contain the "Gen"
     condition = null . view _1
     nextStep  =  over _3 (subtract 1) .  join (( . snd) .  set _4 . view (_1._2)).  ( ap (liftA2 (++) . take) (drop. (+1)) . view (_1._1)  >>= over (_2._1) )  . ( ((:) . liftA2 (!!) (view (_2._1) ) (view (_1._1))) >>= over (_2._2) )  . join ((,) . liftA2  (randomR . (0,)) (view _3) (view _4))
 
