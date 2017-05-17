@@ -13,4 +13,4 @@ makePrisms ''Tree
 p70_1 :: String -> Tree a
 p70_1 = fix fixFn
   where
-    fixFn = 
+    fixFn recc str = if head str == '^' then Node  else ()  
